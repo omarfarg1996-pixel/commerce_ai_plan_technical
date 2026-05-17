@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الأدوات وآلية التنفيذ - نظام الأتمتة الذكي للتجارة الإلكترونية</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #657084;
+      --primary: #2563eb;
+      --primary-2: #0f172a;
+      --soft-blue: #eaf2ff;
+      --soft-green: #ecfdf5;
+      --soft-orange: #fff7ed;
+      --soft-purple: #f5f3ff;
+      --border: #e4e8f0;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --code: #111827;
+      --green: #15803d;
+      --orange: #ea580c;
+      --purple: #7c3aed;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: auto;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 28%),
+        linear-gradient(135deg, #0f172a, #1e3a8a 55%, #2563eb);
+      color: white;
+      padding: 72px 0 58px;
+      border-bottom-left-radius: 42px;
+      border-bottom-right-radius: 42px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: #dbeafe;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.25;
+      margin: 0 0 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: 0;
+      color: #e5edff;
+      font-size: 20px;
+    }
+
+    .section {
+      padding: 44px 0;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 32px;
+      color: #111827;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #111827;
+    }
+
+    p { margin-top: 0; }
+
+    .lead {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 950px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: var(--soft-blue);
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: -6px;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 5px 11px;
+      margin: 4px 4px 0 0;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: #1d4ed8;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .pill.green {
+      background: var(--soft-green);
+      color: var(--green);
+    }
+
+    .pill.orange {
+      background: var(--soft-orange);
+      color: var(--orange);
+    }
+
+    .pill.purple {
+      background: var(--soft-purple);
+      color: var(--purple);
+    }
+
+    .flow-box {
+      background: #0f172a;
+      color: white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+
+    .flow-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 980px;
+    }
+
+    .flow-item {
+      min-height: 78px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .arrow { color: #93c5fd; font-weight: 900; }
+
+    .map {
+      display: grid;
+      gap: 16px;
+    }
+
+    .map-row {
+      display: grid;
+      grid-template-columns: 1.1fr 0.8fr 1.4fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .map-cell {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .map-title {
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 5px;
+    }
+
+    .map-arrow {
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 28px;
+      background: #eff6ff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    th, td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: right;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eff6ff;
+      color: #1e3a8a;
+      font-size: 16px;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      position: relative;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px 76px 22px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      right: 22px;
+      top: 22px;
+      width: 40px;
+      height: 40px;
+      border-radius: 15px;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .code {
+      direction: ltr;
+      text-align: left;
+      background: var(--code);
+      color: #e5e7eb;
+      border-radius: 22px;
+      padding: 20px;
+      overflow-x: auto;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      box-shadow: var(--shadow);
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 22px;
+      padding: 20px;
+      margin-top: 18px;
+    }
+
+    .success {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #14532d;
+      border-radius: 22px;
+      padding: 20px;
+      margin-top: 18px;
+    }
+
+    .footer {
+      padding: 36px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 {
+        grid-column: span 12;
+      }
+      .map-row {
+        grid-template-columns: 1fr;
+      }
+      .map-arrow {
+        min-height: 48px;
+      }
+      .hero {
+        padding: 48px 0;
+        border-bottom-left-radius: 28px;
+        border-bottom-right-radius: 28px;
+      }
+      .card { padding: 20px; }
+      .step { padding: 20px 68px 20px 18px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .hero { border-radius: 0; }
+      .card, table, .step, .map-cell, .flow-box, .code { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="badge">ملحق تقني مبسط للتقرير الأول</div>
+    <h1>كيف سنحقق النظام المقترح باستخدام الأدوات التقنية؟</h1>
+    <p>
+      هذا المستند يشرح بشكل مبسط الأدوات التي سنستخدمها، وظيفة كل أداة، وكيف ستتعاون معًا
+      لتحقيق مميزات النظام: متابعة العملاء، رسائل واتساب ذكية، حملات إعادة البيع، وتحويل الفرص لفريق المبيعات.
+    </p>
+  </div>
+</header>
+
+<main>
+
+<section class="section">
+  <div class="container">
+    <h2>الفكرة العامة</h2>
+    <p class="lead">
+      بدل بناء بوت بسيط يرد على الرسائل فقط، سنبني نظامًا منظمًا يتكون من عدة طبقات:
+      طبقة تستقبل البيانات، طبقة تحفظها، طبقة تشغل العمليات الطويلة، طبقة ذكاء صناعي لاتخاذ القرار،
+      وطبقة متابعة وتقارير. كل أداة لها دور واضح حتى يكون النظام قابلًا للتوسع والصيانة.
+    </p>
+
+    <div class="flow-box">
+      <div class="flow-line">
+        <div class="flow-item">FastAPI<br><small>استقبال وربط</small></div>
+        <div class="arrow">←</div>
+        <div class="flow-item">Postgres<br><small>حفظ البيانات</small></div>
+        <div class="arrow">←</div>
+        <div class="flow-item">Temporal<br><small>تشغيل العمليات</small></div>
+        <div class="arrow">←</div>
+        <div class="flow-item">LangGraph<br><small>قرارات الذكاء الصناعي</small></div>
+        <div class="arrow">←</div>
+        <div class="flow-item">Redis<br><small>سرعة وتنظيم مؤقت</small></div>
+        <div class="arrow">←</div>
+        <div class="flow-item">Qdrant<br><small>ذاكرة ذكية</small></div>
+        <div class="arrow">←</div>
+        <div class="flow-item">WhatsApp / CRM<br><small>تنفيذ ومتابعة</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>الأدوات المستخدمة ودور كل أداة</h2>
+    <div class="grid">
+      <div class="card span-4">
+        <div class="icon">⚡</div>
+        <h3>FastAPI</h3>
+        <p class="mini">فاست إيه بي آي</p>
+        <p>
+          هو بوابة النظام. يستقبل البيانات من المتجر وواتساب ولوحة التحكم، ويرسل أوامر التشغيل لباقي النظام.
+        </p>
+        <span class="pill">API</span>
+        <span class="pill">Webhooks</span>
+        <span class="pill">Dashboard Backend</span>
+      </div>
+
+      <div class="card span-4">
+        <div class="icon">🔁</div>
+        <h3>Temporal</h3>
+        <p class="mini">تيمبورال</p>
+        <p>
+          هو محرك العمليات الطويلة. يدير الحملات، الانتظار، إعادة المحاولة، الموافقات، والمتابعة بدون أن تضيع العملية.
+        </p>
+        <span class="pill green">Workflows</span>
+        <span class="pill green">Retries</span>
+        <span class="pill green">Long-running jobs</span>
+      </div>
+
+      <div class="card span-4">
+        <div class="icon">🧠</div>
+        <h3>LangGraph</h3>
+        <p class="mini">لانج جراف</p>
+        <p>
+          هو عقل الذكاء الصناعي المنظم. يجعل القرار يمر بخطوات واضحة بدل رد عشوائي من AI.
+        </p>
+        <span class="pill purple">AI Decisions</span>
+        <span class="pill purple">Structured Output</span>
+        <span class="pill purple">Human Review</span>
+      </div>
+
+      <div class="card span-4">
+        <div class="icon">🗄️</div>
+        <h3>Postgres</h3>
+        <p class="mini">بوستجرس</p>
+        <p>
+          قاعدة البيانات الرئيسية. تحفظ العملاء، الطلبات، الرسائل، الحملات، قرارات الذكاء الصناعي، وسجل العمليات.
+        </p>
+        <span class="pill">Customers</span>
+        <span class="pill">Orders</span>
+        <span class="pill">Audit Logs</span>
+      </div>
+
+      <div class="card span-4">
+        <div class="icon">🚀</div>
+        <h3>Redis</h3>
+        <p class="mini">ريديس</p>
+        <p>
+          طبقة سرعة وتنظيم مؤقت. تستخدم في الكاش، منع الضغط، حفظ حالات مؤقتة، وتنظيم بعض الطوابير.
+        </p>
+        <span class="pill orange">Cache</span>
+        <span class="pill orange">Rate Limits</span>
+        <span class="pill orange">Temporary State</span>
+      </div>
+
+      <div class="card span-4">
+        <div class="icon">🔎</div>
+        <h3>Qdrant</h3>
+        <p class="mini">كيو درانت</p>
+        <p>
+          ذاكرة ذكية للبحث بالمعنى. تساعد النظام على تذكر سياق العميل والمحادثات والمنتجات المشابهة.
+        </p>
+        <span class="pill purple">Vector Memory</span>
+        <span class="pill purple">Semantic Search</span>
+        <span class="pill purple">Customer Context</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>كيف تحقق الأدوات مميزات التقرير الأول؟</h2>
+    <div class="map">
+
+      <div class="map-row">
+        <div class="map-cell">
+          <div class="map-title">الميزة المطلوبة</div>
+          ملف شامل لكل عميل يوضح بياناته، طلباته، محادثاته، واهتماماته.
+        </div>
+        <div class="map-cell map-arrow">←</div>
+        <div class="map-cell">
+          <div class="map-title">كيف نحققها؟</div>
+          FastAPI يستقبل البيانات، Postgres يحفظها، ثم يتم بناء Customer 360 من الطلبات والرسائل والتاريخ الشرائي.
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-cell">
+          <div class="map-title">الميزة المطلوبة</div>
+          حملات إعادة بيع للعملاء القدامى.
+        </div>
+        <div class="map-cell map-arrow">←</div>
+        <div class="map-cell">
+          <div class="map-title">كيف نحققها؟</div>
+          Temporal يشغل الحملة خطوة بخطوة: اختيار العملاء، تحليلهم، انتظار الموافقة، إرسال الرسائل، ثم متابعة الردود.
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-cell">
+          <div class="map-title">الميزة المطلوبة</div>
+          رسائل واتساب مخصصة لكل عميل.
+        </div>
+        <div class="map-cell map-arrow">←</div>
+        <div class="map-cell">
+          <div class="map-title">كيف نحققها؟</div>
+          LangGraph يحلل بيانات العميل ويقترح رسالة، Qdrant يضيف سياقًا من الذاكرة، ثم يتم فحص الرسالة قبل الإرسال.
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-cell">
+          <div class="map-title">الميزة المطلوبة</div>
+          منع الرسائل الخاطئة أو المزعجة.
+        </div>
+        <div class="map-cell map-arrow">←</div>
+        <div class="map-cell">
+          <div class="map-title">كيف نحققها؟</div>
+          Policy Engine يفحص الموافقة، عدد الرسائل، أوقات الإرسال، حالة العميل، والخصومات قبل إرسال أي رسالة.
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-cell">
+          <div class="map-title">الميزة المطلوبة</div>
+          تحويل العملاء المهتمين لفريق المبيعات.
+        </div>
+        <div class="map-cell map-arrow">←</div>
+        <div class="map-cell">
+          <div class="map-title">كيف نحققها؟</div>
+          عند وصول رد العميل، LangGraph يصنف الرد. إذا كان العميل مهتمًا، FastAPI ينشئ مهمة في CRM مثل Zoho.
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-cell">
+          <div class="map-title">الميزة المطلوبة</div>
+          تقارير واضحة عن الأداء.
+        </div>
+        <div class="map-cell map-arrow">←</div>
+        <div class="map-cell">
+          <div class="map-title">كيف نحققها؟</div>
+          Postgres يحفظ كل الأحداث، ثم يتم حساب عدد الرسائل والردود والفرص والمبيعات وإظهارها في لوحة تحكم أو تقرير يومي.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>آلية العمل من أول دخول البيانات حتى تحقيق النتيجة</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. استقبال البيانات</h3>
+        <p>
+          المتجر أو واتساب يرسل بيانات للنظام. مثل: طلب جديد، رسالة جديدة، أو تحديث بيانات عميل.
+          هنا يستقبل FastAPI البيانات من خلال روابط مخصصة وآمنة.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>2. حفظ البيانات بشكل منظم</h3>
+        <p>
+          يتم حفظ البيانات في Postgres. لا نعتمد على ذاكرة مؤقتة فقط، لأن النظام يحتاج سجل واضح لكل عميل وطلب ورسالة.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>3. تشغيل العملية المناسبة</h3>
+        <p>
+          إذا كان الحدث طلبًا جديدًا، يتم تحديث ملف العميل. إذا كان رسالة من واتساب، يتم تحليل الرد.
+          Temporal يتولى تشغيل هذه الخطوات بطريقة لا تضيع حتى عند حدوث خطأ.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>4. تحليل العميل بالذكاء الصناعي</h3>
+        <p>
+          LangGraph يجمع بيانات العميل، تاريخ الطلبات، وآخر محادثات، ثم يحدد هل العميل مناسب للمتابعة أو إعادة البيع.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>5. اقتراح الرسالة أو الإجراء</h3>
+        <p>
+          الذكاء الصناعي يقترح رسالة أو إجراء. مثل: إرسال عرض، إنشاء مهمة مبيعات، أو تحويل العميل لخدمة العملاء.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>6. فحص القواعد قبل التنفيذ</h3>
+        <p>
+          قبل أي إرسال، النظام يفحص هل العميل وافق على التواصل، هل تم إرسال رسائل كثيرة له، هل الوقت مناسب، وهل العرض مسموح.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>7. التنفيذ والمتابعة</h3>
+        <p>
+          إذا كانت كل القواعد سليمة، يتم إرسال الرسالة أو إنشاء مهمة لفريق المبيعات. ثم يتابع النظام الردود والنتائج.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>8. التقارير والتحسين</h3>
+        <p>
+          كل عملية يتم تسجيلها. هذا يسمح بعمل تقارير عن الأداء ومعرفة الحملات الناجحة والرسائل التي تحتاج تحسين.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>مثال تقني مبسط: حملة إعادة بيع</h2>
+    <div class="code">Customer bought before
+↓
+No new order for 45 days
+↓
+Temporal starts retention workflow
+↓
+Postgres loads customer history
+↓
+Qdrant retrieves similar conversations/context
+↓
+LangGraph decides: eligible or not
+↓
+LangGraph suggests message
+↓
+Policy Engine checks safety rules
+↓
+If approved → send WhatsApp
+↓
+Customer replies
+↓
+LangGraph classifies reply
+↓
+If interested → create CRM task
+↓
+Daily report shows result</div>
+
+    <div class="success">
+      <strong>النتيجة للعميل:</strong>
+      النظام لا يرسل رسائل عشوائية. هو يختار العميل المناسب، يختار التوقيت المناسب،
+      يقترح رسالة مناسبة، ثم يتابع الرد ويحوّله لفريق المبيعات إذا كان مهتمًا.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>لماذا هذه المعمارية أفضل من بوت بسيط؟</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>البوت البسيط</th>
+          <th>النظام المقترح</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>يرد على الرسائل فقط.</td>
+          <td>يفهم العميل، يربطه بالطلبات، ويقترح أفضل إجراء.</td>
+        </tr>
+        <tr>
+          <td>قد يرسل ردودًا غير منظمة.</td>
+          <td>كل قرار AI يمر بخطوات منظمة داخل LangGraph.</td>
+        </tr>
+        <tr>
+          <td>لو حدث خطأ قد تضيع العملية.</td>
+          <td>Temporal يحافظ على العملية ويعيد المحاولة عند الحاجة.</td>
+        </tr>
+        <tr>
+          <td>لا يوجد سجل واضح لكل ما حدث.</td>
+          <td>Postgres يحفظ الأحداث والرسائل والقرارات والتقارير.</td>
+        </tr>
+        <tr>
+          <td>صعب التوسع لاحقًا.</td>
+          <td>يمكن إضافة خدمة عملاء، متابعة شحن، تحليل إعلانات، أو حملات جديدة.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>تقسيم النظام إلى وحدات واضحة</h2>
+    <div class="grid">
+      <div class="card span-6">
+        <h3>Customer Module</h3>
+        <p>مسؤول عن العملاء، توحيد بياناتهم، وبناء ملف شامل لكل عميل.</p>
+        <span class="pill">Customers</span>
+        <span class="pill">Customer 360</span>
+      </div>
+
+      <div class="card span-6">
+        <h3>Commerce Module</h3>
+        <p>مسؤول عن الطلبات، المنتجات، وربط كل طلب بالعميل الصحيح.</p>
+        <span class="pill">Orders</span>
+        <span class="pill">Products</span>
+      </div>
+
+      <div class="card span-6">
+        <h3>AI Module</h3>
+        <p>مسؤول عن تحليل العملاء، اقتراح الرسائل، وتصنيف ردود العملاء.</p>
+        <span class="pill purple">LangGraph</span>
+        <span class="pill purple">AI Decisions</span>
+      </div>
+
+      <div class="card span-6">
+        <h3>Workflow Module</h3>
+        <p>مسؤول عن تشغيل الحملات والمتابعة والانتظار وإعادة المحاولة.</p>
+        <span class="pill green">Temporal</span>
+        <span class="pill green">Automation</span>
+      </div>
+
+      <div class="card span-6">
+        <h3>Messaging Module</h3>
+        <p>مسؤول عن رسائل واتساب، فحص الإرسال، وحفظ حالة الرسالة.</p>
+        <span class="pill orange">WhatsApp</span>
+        <span class="pill orange">Policy</span>
+      </div>
+
+      <div class="card span-6">
+        <h3>Reporting Module</h3>
+        <p>مسؤول عن التقارير اليومية، قياس النتائج، وإظهار الفرص الجديدة.</p>
+        <span class="pill">Reports</span>
+        <span class="pill">Dashboard</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>ما الذي سنستطيع إضافته لاحقًا؟</h2>
+    <div class="grid">
+      <div class="card span-4">
+        <h3>خدمة عملاء ذكية</h3>
+        <p>الرد على الأسئلة المتكررة وتحويل الحالات الصعبة لموظف بشري.</p>
+      </div>
+      <div class="card span-4">
+        <h3>متابعة الشحن</h3>
+        <p>متابعة الحالات المتأخرة أو المرفوضة وإرسال تنبيهات للعميل أو فريق العمل.</p>
+      </div>
+      <div class="card span-4">
+        <h3>تحليل الإعلانات</h3>
+        <p>ربط الحملات الإعلانية بالمبيعات لمعرفة أفضل مصدر للطلبات.</p>
+      </div>
+      <div class="card span-4">
+        <h3>تقييم العملاء</h3>
+        <p>تحديد العملاء عاليي القيمة والعملاء المحتاجين متابعة خاصة.</p>
+      </div>
+      <div class="card span-4">
+        <h3>اقتراح منتجات</h3>
+        <p>اقتراح منتجات مناسبة لكل عميل بناءً على مشترياته السابقة.</p>
+      </div>
+      <div class="card span-4">
+        <h3>مركز موافقات</h3>
+        <p>أي خصم أو رسالة حساسة يتم عرضها على المسؤول قبل التنفيذ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+</main>
+
+
+
+</body>
+</html>
